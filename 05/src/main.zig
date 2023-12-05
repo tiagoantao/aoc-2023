@@ -119,8 +119,8 @@ pub fn main() !void {
 
     var smallest_span_location: u64 = std.math.maxInt(u64);
     for (0..almanac.seeds.len/2) |i| {
-        var start = almanac.seeds[i];
-        var span = almanac.seeds[i+1];
+        var start = almanac.seeds[2*i];
+        var span = almanac.seeds[2*i+1];
         std.debug.print("start: {d} {d}\n", .{start, span});
         for (start..start+span) |seed| {
             var loc = get_locations(almanac.maps, seed);
@@ -129,6 +129,7 @@ pub fn main() !void {
                 smallest_span_location = loc;
             }
         }
+        std.debug.print("smallest span location: {d}\n", .{smallest_span_location});
     }
     std.debug.print("smallest span location: {d}\n", .{smallest_span_location});
 
